@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/png" href="img/icon.png">
+    <link rel="stylesheet" type="text/css" href="css/all.css">
+    <link rel="stylesheet" type="text/css" href="css/estilos.css">
+    <title>USAC Music</title>
+</head>
+
+<body>
+    <div class="contenedor-general">
+        <section class="banner-lateral">
+            <div class="contenedor">
+                <div class="contenedor-perfil">
+                    <div class="thumb"><img src="img/perfil.jpg" alt="modificar perfil"></div>
+                    <div class="usuario">
+                        <p id="name">undefined</p>
+                    </div>
+                    <div class="redes">
+                        <div class="cont-icon celeste"><i class="fab fa-twitter"></i></div>
+                        <div class="cont-icon azul"><i class="fab fa-facebook-f"></i></div>
+                        <div class="cont-icon negro"><i class="fab fa-instagram"></i></div>
+                    </div>
+                </div>
+
+                <div class="ajustes">
+                    <table id="table_banner">
+                        <tr class="opcion">
+                            <td><i class="fas fa-home"></i></td>
+                            <td>
+                                <p id="inicio">Pagina Principal</p>
+                            </td>
+                        </tr>
+                        <tr class="opcion">
+                            <td><i class="far fa-user"></i></td>
+                            <td>
+                                <p id="perfil">Mi perfil</p>
+                            </td>
+                        </tr>
+                        <tr class="opcion">
+                            <td><i class="fas fa-music"></i></td>
+                            <td>
+                                <p id="playlist">Mi Playlist</p>
+                            </td>
+                        </tr>
+                        <tr class="opcion">
+                            <td><i class="fas fa-envelope-open-text"></i></td>
+                            <td>
+                                <p id="solicitud">Solicitud de Canción</p>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <section class="main">
+            <div class="barra-sup">
+                <nav>
+                    <div class="logo" id="logo">
+                        <i class="fab fa-spotify"></i>
+                        <p>USAC Music</p>
+                    </div>
+                </nav>
+            </div>
+            <div class="contenedor-main">
+                <div class="titulo">
+                    <p>Canciones Disponibles</p>
+                </div>
+                <div class="barra"></div>
+                <div class="contenido" id="padre">
+                    <div class="cont-iframes" id="iframes">
+                        <!-- <div class="cont">
+							<iframe src="https://open.spotify.com/embed/track/2haIfONRw1Bhi2zSp67MYU"></iframe>
+							<div class="opc-song">
+								<div class="parrafo"><p>Ver datos</p></div>
+								<div class="parrafo"><p>Agregar a mi Playlist</p></div>
+							</div>
+						</div> -->
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <script type="text/javascript" src="js/jquery.min.js"></script>
+    <script type="text/javascript" src="js/banner.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+
+            function Crear_Caja(spotify, id) {
+                var elemento = document.getElementById('iframes')
+                var cont = document.createElement('div')
+                var iframe = document.createElement('iframe');
+                var opc_song = document.createElement('div');
+                var parrafo = document.createElement('div');
+                var parrafo2 = document.createElement('div');
+                var p = document.createElement('p');
+
+                cont.className = 'cont';
+                iframe.src = spotify;
+                cont.appendChild(iframe);
+                opc_song.className = 'opc_song';
+                parrafo.className = 'parrafo';
+                parrafo.innerHTML = `<p id='${id}' class='datos' onclick='info_Cancion(this)'>Ver datos</p>`;
+                parrafo2.className = 'parrafo';
+                parrafo2.innerHTML = `<p id='${id}' class='agrega' onclick='Playlist(this)'>Agregar a mi Playlist</p>`;
+                opc_song.append(parrafo);
+                opc_song.append(parrafo2);
+                cont.appendChild(opc_song);
+                elemento.appendChild(cont);
+            }
+
+            function Canciones() {
+                fetch(`https://proyecto-2201900831.herokuapp.com//Canciones`).then(res => res.json()).catch(err => {
+                    console.log('ERROR', err);
+                    alert("Algo salió mal, checa la consola mi rey");
+                }).then(response => {
+                    console.log(response);
+                    // console.log(response[0].imagen);
+                    // console.log('------------');
+                    for (var i = 0; i < response.length; i++) {
+                        Crear_Caja(response[i].spotify, response[i].id);
+                    }
+
+                })
+            }
+
+            Canciones();
+        });
+    </script>
+</body>
+
+</html>

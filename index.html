@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+	<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+	<link rel="icon" type="image/png" href="img/icon.png">
+	<link rel="stylesheet" type="text/css" href="css/all.css">
+	<link rel="stylesheet" type="text/css" href="css/pprincipal.css">
+	<title>USAC - Music Station</title>
+</head>
+<body>
+	<div class="contenedor-padre">
+		<nav>
+			<div class="menu">
+				<div class="logo" id="logo">
+					<i class="fab fa-spotify"></i><p>USAC Music</p>
+				</div>
+				<div class="info">
+					<div class="link"><a href="Crear_cuenta.html">Registrarse</a></div>
+					<div class="link"><a href="iniciar_sesion.html">Iniciar sesión</a></div>
+					<div class="link"> | </div>
+					<div class="link"><a href="#acerca-de">Acerca de</a></div>
+					<div class="link"><a href="#contactenos">Contáctenos</a></div>
+				</div>
+			</div>
+		</nav>
+
+		<section class="presentacion">
+			<div class="left">
+				<div class="sim-cel">
+					<div class="bocina"></div>
+					<div class="thumb"><img src="img/cel.jpg" alt=""></div>
+				</div>
+			</div>
+			<div class="right">
+				<div class="mensaje">
+					<p>Reproduce canciones con la mejor calidad de sonido y de forma gratuita.</p>
+				</div>
+				<div class="btn">
+					<div class="link"><a id="inicio">Iniciar ahora!</a></div>
+				</div>
+			</div>
+			<div class="contenedor-btn"><button id="play"><i class="fa fa-play" id="icon"></i></button></div>
+		</section>
+	</div>
+	<section class="main">
+		<div class="contenedor">
+			<div class="titulo"><p>¿Por qué elegir USAC Music?</p></div>
+			<div class="contenedor-cajas">
+				<div class="caja">
+					<div class="circulo"><i class="fas fa-play-circle"></i></div>
+					<p class="sub-titulo">Reproduce tus canciones favoritas.</p>
+					<p class="suave">Escucha las canciones que te encantan y descubre música y podcasts nuevos.</p>
+				</div>
+				<div class="caja">
+					<div class="circulo"><i class="fas fa-headphones-alt"></i></div>
+					<p class="sub-titulo">Crea playlists más fácil que nunca.</p>
+					<p class="suave">Te ayudaremos a crear playlists. O puedes disfrutar de playlists hechas por expertos en música.</p>
+				</div>
+				<div class="caja">
+					<div class="circulo"><i class="fas fa-heart"></i></div>
+					<p class="sub-titulo">Personaliza hasta el último detalle.</p>
+					<p class="suave">Dinos qué te gusta y te recomendaremos la mejor música para ti.</p>
+				</div>
+				<div class="caja">
+					<div class="circulo"><i class="fas fa-bolt"></i></div>
+					<p class="sub-titulo">Ahorra datos móviles.</p>
+					<p class="suave">Activa el modo Ahorro de datos y consume menos datos cuando escuches tu música.</p>
+				</div>
+			</div>
+		</div>
+	</section>
+	<section class="acerca-de" id="acerca-de">
+		<div class="acerca">
+			<div class="titulo"><p>Acerca de</p></div>
+			<div class="contenido">
+				<p>USAC Music es un servicio de musica y vídeos digitales que te da acceso a cientos de canciones de artistas de todo el mundo, con la mejor calidad de sonido completamente gratuito</p>
+			</div>
+		</div>
+	</section>
+	<section class="contactenos" id="contactenos">
+		<div class="contacto">
+			<div class="titulo"><p>Contacto</p></div>
+			<form action="">
+				<div class="driver"><input type="text" id="nombre" placeholder="Nombre"></div>
+				<div class="driver"><input type="email" id="correo" placeholder="Correo"></div>
+				<div class="driver-dos"><textarea placeholder="Mensaje" class="message" id="mensaje"></textarea>
+				</div>
+				<div class="btn"><button id="enviar">Enviar</button></div>
+			</form>
+		</div>
+	</section>
+	<audio src="musica/fondo.mp3" id="aud"></audio>
+	<footer>
+		<div class="creditos">The JhonX - @2019</div>
+	</footer>
+	<script type="text/javascript" src="js/jquery.min.js"></script>
+	<script type="text/javascript" src="js/inicio.js"></script>
+</body>
+</html>

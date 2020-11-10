@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/png" href="img/icon.png">
+    <link rel="stylesheet" type="text/css" href="css/all.css">
+    <link rel="stylesheet" type="text/css" href="css/estilos.css">
+    <link rel="stylesheet" href="css/perfil.css">
+    <title>USAC Music | Solicitar</title>
+</head>
+
+<body>
+    <div class="contenedor-general">
+        <section class="banner-lateral">
+            <div class="contenedor">
+                <div class="contenedor-perfil">
+                    <div class="thumb"><img src="img/perfil.jpg" alt="modificar perfil"></div>
+                    <div class="usuario">
+                        <p id="name">undefined</p>
+                    </div>
+                    <div class="redes">
+                        <div class="cont-icon celeste"><i class="fab fa-twitter"></i></div>
+                        <div class="cont-icon azul"><i class="fab fa-facebook-f"></i></div>
+                        <div class="cont-icon negro"><i class="fab fa-instagram"></i></div>
+                    </div>
+                </div>
+
+                <div class="ajustes">
+                    <table id="table_banner">
+                        <tr class="opcion">
+                            <td><i class="fas fa-home"></i></td>
+                            <td>
+                                <p id="inicio">Pagina Principal</p>
+                            </td>
+                        </tr>
+                        <tr class="opcion">
+                            <td><i class="far fa-user"></i></td>
+                            <td>
+                                <p id="perfil">Mi perfil</p>
+                            </td>
+                        </tr>
+                        <tr class="opcion">
+                            <td><i class="fas fa-music"></i></td>
+                            <td>
+                                <p id="playlist">Mi Playlist</p>
+                            </td>
+                        </tr>
+                        <tr class="opcion">
+                            <td><i class="fas fa-envelope-open-text"></i></td>
+                            <td>
+                                <p id="solicitud">Solicitud de Canción</p>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <section class="main">
+            <div class="barra-sup">
+                <nav>
+                    <div class="logo" id="logo">
+                        <i class="fab fa-spotify"></i>
+                        <p>USAC Music</p>
+                    </div>
+                </nav>
+            </div>
+            <div class="contenedor-main">
+                <div class="titulo">
+                    <p>Solicitar Canción</p>
+                </div>
+                <div class="barra"></div>
+                <p>Ingresa toda la información para agregar una nueva cancion y luego de su respectiva revision, tu canción podría aparecer en nuestro listado la proxima vez que inicies sesión</p>
+                <div class="container">
+                    <form action="">
+                        <div class="grupo">
+                            <p>Nombre Canción</p>
+                            <input type="text" id="nombre">
+                            <p>Artista/Banda</p>
+                            <input type="text" id="artista">
+                        </div>
+                        <div class="grupo2">
+                            <p>Album</p>
+                            <input type="text" class="user" id="album">
+                            <p>Portada</p>
+                            <input type="text" class="user" id="imagen">
+                            <p>Fecha de lanzamiento</p>
+                            <input type="text" id="fecha">
+                        </div>
+                        <div class="grupo">
+                            <p>Link Spotify</p>
+                            <input type="text" id="spotify">
+                            <p>Link Youtube</p>
+                            <input type="text" id="youtube">
+                        </div>
+                        <input type="button" value="Enviar Solicitud" id="enviar">
+                    </form>
+                </div>
+            </div>
+        </section>
+    </div>
+    <script type="text/javascript" src="js/jquery.min.js"></script>
+    <script type="text/javascript" src="js/banner.js"></script>
+    <script type="text/javascript">
+        function enviar_Solicitud(nombre, artista, album, fecha, imagen, spotify, youtube) {
+            var objeto = {
+                'nombre': nombre,
+                'artista': artista,
+                'album': album,
+                'imagen': imagen,
+                'fecha': fecha,
+                'spotify': spotify,
+                'youtube': youtube
+            }
+
+            fetch(`https://proyecto-2201900831.herokuapp.com//Canciones/Solicitud`, {
+                method: 'POST',
+                body: JSON.stringify(objeto),
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            }).then(res => res.json()).catch(err => {
+                console.log('ERROR', err);
+                alert("Algo salió mal, checa la consola mi rey");
+            }).then(response => {
+                console.log(response);
+                if (response.message == 'Success') {
+                    alert('Se envió correctamente la solicitud');
+                    location.href = 'inicio_usuario.html';
+                }
+            })
+        }
+
+        function Com(vacio) {
+            if (vacio != '') {
+                return true;
+            }
+            return false;
+        }
+
+        $('#enviar').click(function() {
+            var nombre = $('#nombre').val();
+            var artista = $('#artista').val();
+            var album = $('#album').val();
+            var fecha = $('#fecha').val();
+            var imagen = $('#imagen').val();
+            var spotify = $('#spotify').val();
+            var youtube = $('#youtube').val();
+            if (Com(nombre) && Com(artista) && Com(album) && Com(fecha) && Com(imagen) && Com(spotify) && Com(youtube)) {
+                enviar_Solicitud(nombre, artista, album, fecha, imagen, spotify, youtube);
+            } else {
+                alert('Por favor llene todos los campos');
+            }
+
+        });
+    </script>
+</body>
+
+</html>

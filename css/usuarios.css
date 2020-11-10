@@ -1,0 +1,70 @@
+table, tbody{
+	width: 100%;
+	text-align: left;
+}
+
+.contenido .caja,
+.contenido tr{
+	width: 95%;
+	padding: 5px;
+	border-top: 1px solid #E8E6E6;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	/*align-items: center;*/
+}
+
+.contenido td,
+.contenido th{
+	width: 24%;
+	text-align: left;
+}
+
+.contenido th{
+	padding: 10px 5px;
+}
+
+.cont-btns{
+	width: 100%;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	/*align-items: center;*/
+}
+
+.btn{
+	width: 46%;
+	min-width: 80px;
+	/*display: inline-block;*/
+	border-radius: 5px;
+	padding: 10px 10px;
+	color: #fff;
+	margin: 0;
+	margin-right: 5px;
+	transition: all .3s ease;
+	text-align: center;
+	margin-bottom: 1px;
+	border:none;
+	outline: none;
+}
+
+.btn:hover{
+	cursor: pointer;
+}
+
+.modificar{
+	background: #24A843;
+	/*margin-bottom: 5px;*/
+}
+
+.modificar:hover{
+	background: #21943C;
+}
+
+.eliminar{
+	background: #D9364C;
+}
+
+.eliminar:hover{
+	background: #C82E43;
+}

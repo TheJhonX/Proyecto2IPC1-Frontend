@@ -1,0 +1,373 @@
+*{
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+body{
+	background: #FFFFFF;
+	color: #000;
+	font-size: 16px;
+	font-family: 'Open Sans', 'Helvetica', sans-serif;
+	font-weight: 400;
+}
+
+.contenedor-padre{
+	width: 100%;
+	height: 603px;
+	background: linear-gradient(360deg, rgb(3, 95, 141) 10%, rgb(34, 64, 153) 75%);
+}
+
+nav{
+	width: 100%;
+	padding: 10px 15px;
+	background: rgba(0,0,0,.5);
+}
+
+.menu{
+	width: 100%;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	color: #fff;
+}
+
+.menu .logo{
+	width: 200px;
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+	font-size: 25px;
+}
+
+.menu .logo:hover{
+	cursor: pointer;
+}
+
+.menu .logo i{
+	font-size: 35px;
+}
+
+.menu .info{
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.menu .info .link a{
+	display: inline-block;
+	text-decoration: none;
+	color: #fff;
+	padding: 15px 15px;
+}
+
+.menu .info .link a:hover{
+	text-shadow: 0px 0px 1px #fff;
+}
+
+/*INFO*/
+
+.presentacion{
+	width: 100%;
+	max-width: 1000px;
+	margin: 15px auto;
+	padding: 10px 15px;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	position: relative;
+}
+
+.presentacion .left{
+	width: 30%;
+}
+
+.presentacion .right{
+	width: 60%;
+}
+
+.presentacion .left .sim-cel{
+	width: 281px;
+	position: relative;
+	background: #fff;
+	border-radius: 35px 35px 0 0;
+	padding: 64px 8px 0px 8px;
+}
+
+.presentacion .left .sim-cel img{
+	width: 100%;
+	vertical-align: top;
+}
+
+.bocina{
+	width: 45px;
+	position: absolute;
+	height: 6px;
+	border-radius: 10px;
+	background: #231F20;
+	top: 25px;
+	left: 118px;
+}
+
+.right .mensaje{
+	font-size: 50px;
+	font-weight: 700;
+	color: #fff;
+	align-self: center;
+	margin-bottom: 25px;
+}
+
+.btn .link a{
+	display: inline-block;
+	width: 250px;
+	text-align: center;
+	text-decoration: none;
+	color: #000;
+	background: #fff;
+	padding: 15px 25px;
+	border-radius: 25px;
+	font-weight: 600;
+	box-shadow: 0px 1px 4px rgba(255,255,255,0.3);
+}
+
+.btn .link a:hover{
+	background: #f2f2f2;
+	box-shadow: 0px 2px 4px rgba(0,0,0,0.4);
+}
+
+/*MAIN*/
+
+.main{
+	width: 100%;
+	max-width: 1100px;
+	margin: 20px auto;
+}
+
+.contenedor{
+	width: 100%;
+	padding: 25px 10px;
+	margin-bottom: 35px;
+}
+
+.contenedor .titulo{
+	font-family: 'Open Sans', 'Helvetica', sans-serif;
+	font-size: 45px;
+	font-weight: 700;
+	text-align: center;
+	margin-bottom: 45px;
+}
+
+.contenedor .contenedor-cajas{
+	width: 100%;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+
+}
+
+.contenedor .contenedor-cajas .caja{
+	width: 23%;
+}
+
+.contenedor .contenedor-cajas .caja .circulo{
+	width: 100px;
+	height: 100px;
+	margin: auto;
+	background: #000;
+	border-radius: 50%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	margin-bottom: 20px;
+}
+
+.contenedor .contenedor-cajas .caja .circulo i{
+	font-size: 40px;
+	color: #fff;
+}
+
+.contenedor .contenedor-cajas .caja .sub-titulo{
+	width: 100%;
+	text-align: center;
+	font-size: 22px;
+	font-weight: 700;
+	margin-bottom: 10px;
+	color: #222326;
+	line-height: 30px;
+}
+
+.contenedor .contenedor-cajas .caja .suave{
+	font-size: 15px;
+	text-align: center;
+	font-weight: 400;
+	color: #656565;
+}
+
+/*ACERCA DE*/
+
+.acerca-de{
+	width: 100%;
+	background: #f2f2f2;
+	padding: 50px 10px;
+}
+
+.acerca-de .acerca{
+	width: 100%;
+	max-width: 1000px;
+	margin: 25px auto;
+}
+
+.acerca-de .acerca .titulo{
+	font-size: 35px;
+	font-weight: 300;
+	color: #F27F0E;
+	text-align: center;
+	margin-bottom: 25px;
+}
+
+.acerca-de .acerca .contenido{
+	width: 100%;
+	max-width: 800px;
+	margin: auto;
+	line-height: 30px;
+	font-size: 16px;
+	text-align: center;
+}
+
+/*CONTACTENOS*/
+
+.contactenos{
+	width: 100%;
+	background: #FFFFFF;
+	margin: 25px 0;
+}
+
+.contactenos .contacto{
+	width: 100%;
+	max-width: 1000px;
+	margin: auto;
+	padding: 35px 15px;
+}
+
+.contactenos .contacto .titulo{
+	font-size: 35px;
+	font-weight: 300;
+	text-align: center;
+	color: #3895EA;
+	margin-bottom: 25px;
+}
+
+.contactenos .contacto form{
+	display: flex;
+	justify-content: space-between;
+	flex-wrap: wrap;
+}
+
+.contactenos .contacto .driver{
+	width: 49%;
+	margin-bottom: 20px;
+}
+
+.contactenos .contacto .driver-dos{
+	width: 100%;
+	margin-bottom: 25px;
+}
+
+.contactenos .contacto .driver input[type="text"],
+.contactenos .contacto .driver input[type="email"],
+.contactenos .contacto .driver-dos .message{
+	width: 100%;
+	font-family: 'Open Sans', 'Helvetica', sans-serif;
+	font-size: 16px;
+	padding: 15px 15px;
+	border: none;
+	border: 2px solid #CECECE;
+	border-radius: 5px;
+	outline: none;
+}
+
+.contactenos .contacto .driver input[type="text"]:focus,
+.contactenos .contacto .driver input[type="email"]:focus,
+.contactenos .contacto .driver-dos .message:focus{
+	border: 2px solid #878888;
+}
+
+.contactenos .contacto .driver-dos .message{
+	max-width: 100%;
+	min-width: 100%;
+	max-height: 250px;
+	min-height: 100px;
+}
+
+.contactenos .contacto .btn{
+	width: 130px;
+	margin: auto;
+	margin-bottom: 25px;
+}
+
+.contactenos .contacto .btn button{
+	width: 100%;
+	background: #3895EA;
+	border: none;
+	outline: none;
+	padding: 15px 25px;
+	border-radius: 4px;
+	color: #fff;
+	font-size: 17px;
+	font-weight: 400;
+}
+
+.contactenos .contacto .btn button:hover{
+	cursor: pointer;
+	background: #387BEA;
+}
+
+/*FOOTER*/
+
+footer .creditos{
+	padding: 20px 25px;
+	color: #fff;
+	background: #000;
+	text-align: center;
+}
+
+/*AUDIO*/
+
+.contenedor-btn{
+	position: absolute;
+	bottom: -15px;
+	left: 45%;
+	border-radius: 50%;
+}
+
+.contenedor-btn button{
+	width: 60px;
+	height: 60px;
+	background: #f2f2f2;
+	box-shadow: 0px 0px 4px rgba(0,0,0,0.5);
+	outline: none;
+	border: none;
+	border-radius: 50%;
+	transition: all .3s ease;
+}
+
+.contenedor-btn button i{
+	font-size: 22px;
+	text-align: center;
+	color: #000;
+}
+.contenedor-btn button:hover{
+	cursor: pointer;
+}
+
+.contenedor-btn button:active{
+	box-shadow: none;
+}
+
+#inicio:hover{
+	cursor: pointer;
+}
+
+
+

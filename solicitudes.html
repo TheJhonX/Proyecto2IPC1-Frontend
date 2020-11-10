@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/png" href="img/icon.png">
+    <link rel="stylesheet" type="text/css" href="css/all.css">
+    <link rel="stylesheet" type="text/css" href="css/estilos.css">
+    <title>USAC Music Station | Solicitudes</title>
+</head>
+
+<body>
+    <div class="contenedor-general">
+        <section class="banner-lateral">
+            <div class="contenedor">
+                <div class="contenedor-perfil">
+                    <div class="thumb"><img src="img/perfil.jpg" alt="modificar perfil"></div>
+                    <div class="usuario">
+                        <p id="name">undefined</p>
+                    </div>
+                    <div class="redes">
+                        <div class="cont-icon celeste"><i class="fab fa-twitter"></i></div>
+                        <div class="cont-icon azul"><i class="fab fa-facebook-f"></i></div>
+                        <div class="cont-icon negro"><i class="fab fa-github"></i></div>
+                    </div>
+                </div>
+
+                <div class="ajustes">
+                    <table id="table_banner">
+                        <tr class="opcion">
+                            <td><i class="fas fa-home"></i></td>
+                            <td>
+                                <p id="inicio">Pagina Principal</p>
+                            </td>
+                        </tr>
+                        <tr class="opcion">
+                            <td><i class="far fa-user"></i></td>
+                            <td>
+                                <p id="perfil">Mi perfil</p>
+                            </td>
+                        </tr>
+                        <tr class="opcion">
+                            <td><i class="fas fa-users"></i></td>
+                            <td>
+                                <p id="p_usuario">Usuarios</p>
+                            </td>
+                        </tr>
+                        <tr class="opcion">
+                            <td><i class="fas fa-users-cog"></i></td>
+                            <td>
+                                <p id="n_admin">Nuevo Admin</p>
+                            </td>
+                        </tr>
+                        <tr class="opcion">
+                            <td><i class="fas fa-folder-plus"></i></td>
+                            <td>
+                                <p id="solicitudes">Solicitudes</p>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <section class="main">
+            <div class="barra-sup">
+                <nav>
+                    <div class="logo" id="logo">
+                        <i class="fab fa-spotify"></i>
+                        <p>USAC Music</p>
+                    </div>
+                </nav>
+            </div>
+            <div class="contenedor-main">
+                <div class="titulo">
+                    <p>Solicitudes</p>
+                </div>
+                <div class="barra"></div>
+
+                <div class="contenido" id="padre">
+
+                </div>
+            </div>
+        </section>
+    </div>
+    <script type="text/javascript" src="js/jquery.min.js"></script>
+    <script type="text/javascript" src="js/banner.js"></script>
+    <script type="text/javascript">
+        function eliminar_Solicitud(btn, num) {
+            fetch(`https://proyecto-2201900831.herokuapp.com//Canciones/Solicitud/Borrar/${btn}`, {
+                method: 'DELETE'
+            }).then(res => res.json()).catch(err => {
+                console.log('ERROR', err);
+                alert("Algo salió mal, checa la consola mi rey");
+            }).then(response => {
+                if (num == 0) {
+                    alert(response.message);
+                    location.href = 'solicitudes.html';
+                }
+            })
+        }
+
+        function aceptar_Cancion(nombre, artista, album, fecha, imagen, spotify, youtube) {
+            var objeto = {
+                'nombre': nombre,
+                'artista': artista,
+                'album': album,
+                'imagen': imagen,
+                'fecha': fecha,
+                'spotify': spotify,
+                'youtube': youtube
+            }
+
+            fetch('https://proyecto-2201900831.herokuapp.com//Canciones/Nueva', {
+                method: 'POST',
+                body: JSON.stringify(objeto),
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            }).then(res => res.json()).catch(err => {
+                console.log('ERROR', err);
+                alert("Algo salió mal, checa la consola mi rey");
+            }).then(response => {
+                if (response.message == 'failed') {
+                    console.log('Algo salió mal');
+                }
+            })
+        }
+
+        function solicitudes() {
+            fetch(`https://proyecto-2201900831.herokuapp.com//Canciones/Solicitudes`).then(res => res.json()).catch(err => {
+                console.log('ERROR', err);
+                alert("Algo salió mal, checa la consola mi rey");
+            }).then(response => {
+                console.log(response);
+                var elemento = document.getElementById('padre');
+                for (var i = 0; i < response.length; i++) {
+                    var caja = document.createElement('div');
+                    caja.className = 'caja';
+                    caja.innerHTML = `
+						<div class="cont-info">
+							<div class="portada"><img src="${response[i].imagen}" alt=""></div>
+							<div class="titulo-cancion">${response[i].nombre}</div>
+						</div>
+						<div class="cont-btns">
+							<div class="btn modificar" value="${response[i].id}">Aceptar</div>
+							<div class="btn eliminar" value="${response[i].id}">Rechazar</div>
+						</div>`;
+                    elemento.appendChild(caja);
+                }
+                $('.modificar').click(function() {
+                    for (var i = 0; i < response.length; i++) {
+                        if (parseInt(response[i].id) == $(this).attr('value')) {
+                            aceptar_Cancion(response[i].nombre, response[i].artista, response[i].album, response[i].fecha, response[i].imagen, response[i].spotify, response[i].youtube);
+                            eliminar_Solicitud($(this).attr('value'), 1);
+                            break;
+                        }
+
+                    }
+                    alert('Se agregó correctamente');
+                    location.href = 'solicitudes.html';
+                });
+                $('.eliminar').click(function() {
+                    eliminar_Solicitud($(this).attr('value'), 0);
+                });
+            })
+        }
+        solicitudes();
+    </script>
+</body>
+
+</html>

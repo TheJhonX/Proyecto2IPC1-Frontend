@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/png" href="img/icon.png">
+    <link rel="stylesheet" type="text/css" href="css/all.css">
+    <link rel="stylesheet" type="text/css" href="css/estilos.css">
+    <title>USAC Music | Comentarios</title>
+</head>
+
+<body>
+    <div class="contenedor-general">
+        <section class="banner-lateral">
+            <div class="contenedor">
+                <div class="contenedor-perfil">
+                    <div class="thumb"><img src="img/perfil.jpg" alt="modificar perfil"></div>
+                    <div class="usuario">
+                        <p id="name">undefined</p>
+                    </div>
+                    <div class="redes">
+                        <div class="cont-icon celeste"><i class="fab fa-twitter"></i></div>
+                        <div class="cont-icon azul"><i class="fab fa-facebook-f"></i></div>
+                        <div class="cont-icon negro"><i class="fab fa-github"></i></div>
+                    </div>
+                </div>
+
+                <div class="ajustes">
+                    <table id="table_banner">
+                        <tr class="opcion">
+                            <td><i class="fas fa-home"></i></td>
+                            <td>
+                                <p id="inicio">Pagina Principal</p>
+                            </td>
+                        </tr>
+                        <tr class="opcion">
+                            <td><i class="far fa-user"></i></td>
+                            <td>
+                                <p id="perfil">Mi perfil</p>
+                            </td>
+                        </tr>
+                        <tr class="opcion">
+                            <td><i class="fas fa-users"></i></td>
+                            <td>
+                                <p id="p_usuario">Usuarios</p>
+                            </td>
+                        </tr>
+                        <tr class="opcion">
+                            <td><i class="fas fa-users-cog"></i></td>
+                            <td>
+                                <p id="n_admin">Nuevo Admin</p>
+                            </td>
+                        </tr>
+                        <tr class="opcion">
+                            <td><i class="fas fa-folder-plus"></i></td>
+                            <td>
+                                <p id="solicitudes">Solicitudes</p>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <section class="main">
+            <div class="barra-sup">
+                <nav>
+                    <div class="logo" id="logo">
+                        <i class="fab fa-spotify"></i>
+                        <p>USAC Music</p>
+                    </div>
+                </nav>
+            </div>
+            <div class="contenedor-main">
+                <div class="titulo">
+                    <p>Comentarios</p>
+                </div>
+                <div class="barra"></div>
+                <!-- <div class="contenedor-opc">
+					<div class="cont-opc"><button>Generar reporte PDF</button></div>
+					<input type="file" id="fichero">
+					<div class="cont-opc"><label for="fichero" id="archivo">Cargar Canciones</label></div>
+				</div> -->
+                <div class="contenido" id="padre">
+                    <div class="caja" id="caja">
+                        <div class="cont-info">
+                            <div class="portada imggrande"><img src="" id="imagen"></div>
+                            <div class="titulo-cancion grande">.......</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="comments">
+                    <table>
+                        <tbody id="tabla">
+                            <tr>
+                                <th>Usuario</th>
+                                <th>Comentario</th>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+    </div>
+    <script type="text/javascript" src="js/jquery.min.js"></script>
+    <script type="text/javascript" src="js/banner.js"></script>
+    <script type="text/javascript">
+        fetch(`https://proyecto-2201900831.herokuapp.com//Canciones/Comentario/${sessionStorage.comentario}`).then(res => res.json()).catch(err => {
+            console.log('ERROR', err);
+            alert("Algo salió mal, checa la consola mi rey");
+        }).then(response => {
+            console.log(response);
+            var imagen = document.getElementById('imagen');
+            if (response.message == 'Failed') {
+                // alert('Algo salio mal, nom puedem ser :(');
+                imagen.src = response.imagen;
+                $('.grande').html(response.nombre);
+            } else {
+                imagen.src = response[0].imagen;
+                $('.grande').html(response[0].nombre);
+                var tabla = document.getElementById('tabla');
+                for (var i = 0; i < response.length; i++) {
+                    var fila = document.createElement('tr');
+                    var colum = document.createElement('td');
+                    var colum2 = document.createElement('td');
+                    colum.innerHTML = response[i].usuario;
+                    fila.append(colum);
+                    colum2.innerHTML = response[i].comentario;
+                    fila.append(colum2);
+                    tabla.append(fila);
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

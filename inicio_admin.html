@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+	<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+	<link rel="icon" type="image/png" href="img/icon.png">
+	<link rel="stylesheet" type="text/css" href="css/all.css">
+	<link rel="stylesheet" type="text/css" href="css/estilos.css">
+	<title>USAC Music Station | Administrador</title>
+</head>
+<body>
+	<div class="contenedor-general">
+		<section class="banner-lateral">
+			<div class="contenedor">
+				<div class="contenedor-perfil">
+					<div class="thumb"><img src="img/perfil.jpg" alt="modificar perfil"></div>
+					<div class="usuario"><p id="name">Administrador</p></div>
+					<div class="redes">
+						<div class="cont-icon celeste"><i class="fab fa-twitter"></i></div>
+						<div class="cont-icon azul"><i class="fab fa-facebook-f"></i></div>
+						<div class="cont-icon negro"><i class="fab fa-github"></i></div>
+						
+					</div>
+				</div>
+
+				<div class="ajustes">
+					<table id="table_banner">
+						<tr class="opcion">
+							<!-- <div class="opcion links"> -->
+								<td><i class="fas fa-home"></i></td><td><p id="inicio">Pagina Principal</p></td>
+							<!-- </div> -->
+						</tr>
+						<tr class="opcion">
+							<!-- <div class="opcion"> -->
+								<td><i class="far fa-user"></i></td><td><p id="perfil">Mi perfil</p></td>
+							<!-- </div> -->
+						</tr>
+						<tr class="opcion">
+							<!-- <div class="opcion"> -->
+								<td><i class="fas fa-users"></i></td><td><p id="p_usuario">Usuarios</p></td>
+							<!-- </div> -->
+						</tr>
+						<tr class="opcion">
+							<!-- <div class="opcion"> -->
+								<td><i class="fas fa-users-cog"></i></td><td><p id="n_admin">Nuevo Admin</p></td>
+							<!-- </div> -->
+						</tr>
+						<tr class="opcion">
+							<!-- <div class="opcion"> -->
+								<td><i class="fas fa-folder-plus"></i></td><td><p id="solicitudes">Solicitudes</p></td>
+							<!-- </div> -->
+						</tr>
+					</table>
+				</div>
+			</div>
+		</section>
+
+		<section class="main">
+			<div class="barra-sup">
+				<nav>
+					<div class="logo" id="logo">
+						<i class="fab fa-spotify"></i><p>USAC Music</p>
+					</div>
+				</nav>
+			</div>
+			<div class="contenedor-main">
+				<div class="titulo"><p>Canciones Registradas</p></div>
+				<div class="barra"></div>
+				<div class="contenedor-opc">
+					<div class="cont-opc" id="pdf"><button>Generar reporte PDF</button></div>
+					<input type="file" id="fichero">
+					<div class="cont-opc"><label for="fichero" id="archivo">Cargar Canciones</label></div>
+					<!-- <div class="barrita"></div> -->
+				</div>
+				<div class="contenido" id="padre">
+					<!-- <div class="caja" id="caja">
+						<div class="cont-info">
+							<div class="portada"><img src="img/portada.jpg" alt=""></div>
+							<div class="titulo-cancion">Happier-Marshmello</div>
+						</div>
+						<div class="cont-btns">
+							<div class="btn modificar">Modificar</div>
+							<div class="btn eliminar">Eliminar</div>
+							<div class="btn comentarios">Comentarios</div>
+						</div>
+					</div>
+					<div class="caja">
+						<div class="cont-info">
+							<div class="portada"><img src="img/portada.jpg" alt=""></div>
+							<div class="titulo-cancion">Happier-Marshmello</div>
+						</div>
+						<div class="cont-btns">
+							<div class="btn modificar"><p>Modificar</p></div>
+							<div class="btn eliminar"><p>Eliminar</p></div>
+							<div class="btn comentarios"><p>Comentarios</p></div>
+						</div>
+					</div>
+					<div class="caja">
+						<div class="cont-info">
+							<div class="portada"><img src="img/portada.jpg" alt=""></div>
+							<div class="titulo-cancion">Happier-Marshmello</div>
+						</div>
+						<div class="cont-btns">
+							<div class="btn modificar"><p>Modificar</p></div>
+							<div class="btn eliminar"><p>Eliminar</p></div>
+							<div class="btn comentarios"><p>Comentarios</p></div>
+						</div>
+					</div> -->
+				</div>
+			</div>
+		</section>
+	</div>
+
+	<script type="text/javascript" src="js/jquery.min.js"></script>
+	<script type="text/javascript" src="js/banner.js"></script>
+	<script type="text/javascript" src="jsPDF-1.3.2/dist/jspdf.min.js"></script>
+	<script type="text/javascript" src="js/admin.js"></script>
+</body>
+</html>

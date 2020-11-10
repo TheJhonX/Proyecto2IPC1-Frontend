@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/png" href="img/icon.png">
+    <link rel="stylesheet" type="text/css" href="css/all.css">
+    <link rel="stylesheet" type="text/css" href="css/estilos.css">
+    <link rel="stylesheet" href="css/perfil.css">
+    <title>USAC Music Station | Editar</title>
+</head>
+
+<body>
+    <div class="contenedor-general">
+        <section class="banner-lateral">
+            <div class="contenedor">
+                <div class="contenedor-perfil">
+                    <div class="thumb"><img src="img/perfil.jpg" alt="modificar perfil"></div>
+                    <div class="usuario">
+                        <p id="name">undefined</p>
+                    </div>
+                    <div class="redes">
+                        <div class="cont-icon celeste"><i class="fab fa-twitter"></i></div>
+                        <div class="cont-icon azul"><i class="fab fa-facebook-f"></i></div>
+                        <div class="cont-icon negro"><i class="fab fa-github"></i></div>
+                    </div>
+                </div>
+
+                <div class="ajustes">
+                    <table id="table_banner">
+                        <tr class="opcion">
+                            <td><i class="fas fa-home"></i></td>
+                            <td>
+                                <p id="inicio">Pagina Principal</p>
+                            </td>
+                        </tr>
+                        <tr class="opcion">
+                            <td><i class="far fa-user"></i></td>
+                            <td>
+                                <p id="perfil">Mi perfil</p>
+                            </td>
+                        </tr>
+                        <tr class="opcion">
+                            <td><i class="fas fa-users"></i></td>
+                            <td>
+                                <p id="p_usuario">Usuarios</p>
+                            </td>
+                        </tr>
+                        <tr class="opcion">
+                            <td><i class="fas fa-users-cog"></i></td>
+                            <td>
+                                <p id="n_admin">Nuevo Admin</p>
+                            </td>
+                        </tr>
+                        <tr class="opcion">
+                            <td><i class="fas fa-folder-plus"></i></td>
+                            <td>
+                                <p id="solicitudes">Solicitudes</p>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <section class="main">
+            <div class="container">
+                <div class="titulo">
+                    <p>Editar Canción</p>
+                </div>
+                <form action="">
+                    <div class="grupo">
+                        <p>Nombre</p>
+                        <input type="text" id="nombre">
+                        <p>Artista</p>
+                        <input type="text" id="artista">
+                        <p>Album</p>
+                        <input type="text" id="album">
+                    </div>
+                    <div class="grupo2">
+                        <p>Portada (ruta)</p>
+                        <input type="text" class="user" id="portada">
+                        <p>Fecha</p>
+                        <input type="text" class="user" id="fecha">
+                    </div>
+                    <div class="grupo">
+                        <p>Link Spotify</p>
+                        <input type="text" id="spotify">
+                        <p>Link Youtube</p>
+                        <input type="text" id="youtube">
+                    </div>
+                    <input type="button" value="Actualizar" id="actualizar">
+                </form>
+            </div>
+        </section>
+    </div>
+
+    <script type="text/javascript" src="js/jquery.min.js"></script>
+    <script type="text/javascript" src="js/banner.js"></script>
+    <script type="text/javascript">
+        function traer_Datos() {
+            fetch(`https://proyecto-2201900831.herokuapp.com//Canciones/${sessionStorage.buscar}`, ).then(res => res.json()).catch(err => {
+                console.log('ERROR', err);
+                alert("Algo salió mal, checa la consola mi rey");
+            }).then(response => {
+                if (response.message == 'Failed') {
+                    alert('Algo salio mal krnal :(');
+                } else {
+                    $('#nombre').val(response.nombre);
+                    $('#artista').val(response.artista);
+                    $('#album').val(response.album);
+                    $('#portada').val(response.imagen);
+                    $('#fecha').val(response.fecha);
+                    $('#spotify').val(response.spotify);
+                    $('#youtube').val(response.youtube);
+                }
+
+            })
+        }
+
+        function actualizar_cancion(nombre, artista, album, fecha, imagen, spotify, youtube) {
+            var cancion = sessionStorage.buscar;
+            var objeto = {
+                'nombre': nombre,
+                'artista': artista,
+                'album': album,
+                'fecha': fecha,
+                'imagen': imagen,
+                'spotify': spotify,
+                'youtube': youtube
+            }
+
+            fetch(`https://proyecto-2201900831.herokuapp.com//Canciones/Editar/${cancion}`, {
+                method: 'POST',
+                body: JSON.stringify(objeto),
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            }).then(res => res.json()).catch(err => {
+                console.log('ERROR', err);
+                alert("Algo salió mal, checa la consola mi rey");
+            }).then(response => {
+                alert(response.message);
+                location.href = 'editar_cancion.html';
+            })
+        }
+
+        function val_(input) {
+            if (input != '') {
+                return true;
+            }
+            return false;
+        }
+
+        $('#actualizar').click(function() {
+            var nombre = $('#nombre').val();
+            var artista = $('#artista').val();
+            var album = $('#album').val();
+            var fecha = $('#fecha').val();
+            var imagen = $('#portada').val();
+            var spotify = $('#spotify').val();
+            var youtube = $('#youtube').val();
+
+            if (val_(nombre) && val_(artista) && val_(album) && val_(fecha) && val_(imagen) && val_(spotify) && val_(youtube)) {
+                actualizar_cancion(nombre, artista, album, fecha, imagen, spotify, youtube);
+            } else {
+                alert('Por favor llene todos los campos');
+            }
+        });
+        traer_Datos();
+    </script>
+</body>
+
+</html>

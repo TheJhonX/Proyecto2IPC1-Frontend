@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/png" href="img/icon.png">
+    <link rel="stylesheet" type="text/css" href="css/all.css">
+    <link rel="stylesheet" type="text/css" href="css/estilos.css">
+    <link rel="stylesheet" type="text/css" href="css/info.css">
+    <title>USAC Music | Información</title>
+</head>
+
+<body>
+
+    <div class="contenedor-general">
+        <section class="banner-lateral">
+            <div class="contenedor">
+                <div class="contenedor-perfil">
+                    <div class="thumb"><img src="img/perfil.jpg" alt="modificar perfil"></div>
+                    <div class="usuario">
+                        <p id="name">undefined</p>
+                    </div>
+                    <div class="redes">
+                        <div class="cont-icon celeste"><i class="fab fa-twitter"></i></div>
+                        <div class="cont-icon azul"><i class="fab fa-facebook-f"></i></div>
+                        <div class="cont-icon negro"><i class="fab fa-instagram"></i></div>
+                    </div>
+                </div>
+
+                <div class="ajustes">
+                    <table id="table_banner">
+                        <tr class="opcion">
+                            <td><i class="fas fa-home"></i></td>
+                            <td>
+                                <p id="inicio">Pagina Principal</p>
+                            </td>
+                        </tr>
+                        <tr class="opcion">
+                            <td><i class="far fa-user"></i></td>
+                            <td>
+                                <p id="perfil">Mi perfil</p>
+                            </td>
+                        </tr>
+                        <tr class="opcion">
+                            <td><i class="fas fa-music"></i></td>
+                            <td>
+                                <p id="playlist">Mi Playlist</p>
+                            </td>
+                        </tr>
+                        <tr class="opcion">
+                            <td><i class="fas fa-envelope-open-text"></i></td>
+                            <td>
+                                <p id="solicitud">Solicitud de Canción</p>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <section class="main">
+            <div class="barra-sup">
+                <nav>
+                    <div class="logo" id="logo">
+                        <i class="fab fa-spotify"></i>
+                        <p>USAC Music</p>
+                    </div>
+                </nav>
+            </div>
+            <div class="contenedor-main">
+                <div class="titulo">
+                    <p>Información</p>
+                </div>
+                <div class="barra"></div>
+                <div class="contenido" id="padre">
+                    <div class="contenedor-aux">
+                        <div class="cont">
+                            <div class="portada"><img src="" id="imagen"></div>
+                            <div class="left">
+                                <p>Álbum</p>
+                                <div class="texto" id="album"></div>
+                                <p id="artista"></p>
+                            </div>
+                        </div>
+                        <div class="barrita"></div>
+                        <div class="info-laterales">
+                            <div class="info-lateral">
+                                <p class="titulo_next">Título</p>
+                                <div class="nombre" id="nombre"></div>
+                                <p class="titulo_next">Fecha de lanzamiento</p>
+                                <div class="fecha" id="fecha"></div>
+                            </div>
+                            <div class="info-lateralD">
+                                <embed src="" id="youtube"></embed>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="comentario-title">
+                        <p>Comentarios</p>
+                    </div>
+                    <div class="comentariosv" id="comentarios">
+                        <!-- <div class="caja-comentarios">
+							<div class="username" id="username">TheJhonX <span class="cajita">autor</span></div>
+							<div class="user_comment" id="user_comment">musica mas busura XD</div>
+						</div> -->
+                    </div>
+                    <div class="mi-comentario">
+                        <textarea class="mycomment" id="mycomment" placeholder="Mi comentario"></textarea>
+                        <button class="btn-enviar" id="btn-enviar">Enviar</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+    <script type="text/javascript" src="js/jquery.min.js"></script>
+    <script type="text/javascript" src="js/banner.js"></script>
+    <script type="text/javascript">
+        function informacion() {
+            fetch(`https://proyecto-2201900831.herokuapp.com//Canciones/${sessionStorage.buscar}`, ).then(res => res.json()).catch(err => {
+                console.log('ERROR', err);
+                alert("Algo salió mal, checa la consola mi rey");
+            }).then(response => {
+                console.log(response);
+                if (response.message == 'Failed') {
+                    alert('Algo salio mal krnal :(');
+                } else {
+                    $('#imagen').attr('src', response.imagen);
+                    $('#youtube').attr('src', response.youtube);
+                    $('#album').text(response.album);
+                    $('#nombre').text(response.nombre);
+                    $('#artista').text(response.artista);
+                    $('#fecha').text(response.fecha);
+                }
+
+            })
+        }
+
+        function getComments() {
+            fetch(`https://proyecto-2201900831.herokuapp.com//Canciones/Comentario/${sessionStorage.buscar}`).then(res => res.json()).catch(err => {
+                console.log('ERROR', err);
+                alert("Algo salió mal, checa la consola mi rey");
+            }).then(response => {
+                console.log(response);
+                if (response.message == 'Failed') {
+                    alert('Algo salio mal, espera agarro señal krnal');
+                } else {
+                    var comments = document.getElementById('comentarios');
+                    for (var i = 0; i < response.length; i++) {
+                        var caja_comentarios = document.createElement('div');
+                        caja_comentarios.className = 'caja-comentarios';
+                        caja_comentarios.innerHTML = `
+							<div class="username" id="username">${response[i].usuario} <span class="cajita">autor</span></div>
+							<div class="user_comment" id="user_comment">${response[i].comentario}</div>`;
+                        comments.append(caja_comentarios);
+                    }
+                }
+            })
+        }
+
+        function agregarComentario(id, usuario, comentario) {
+            var objeto = {
+                'id': id,
+                'usuario': usuario,
+                'comentario': comentario
+            }
+
+            fetch('https://proyecto-2201900831.herokuapp.com//Canciones/Comentario/Agregar', {
+                method: 'POST',
+                body: JSON.stringify(objeto),
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            }).then(res => res.json()).catch(err => {
+                console.log('ERROR', err);
+                alert("Algo salió mal, checa la consola mi rey");
+            }).then(response => {
+                if (response.message == 'Success') {
+                    alert('Se envió el comentario correctamente');
+                    location.href = 'info_cancion.html';
+                }
+            })
+        }
+        informacion();
+        getComments();
+        $('#btn-enviar').click(function() {
+            var id = sessionStorage.buscar;
+            console.log(id);
+            var usuario = sessionStorage.usuario;
+            console.log(usuario);
+            var comentario = $('#mycomment').val();
+            console.log(comentario);
+            agregarComentario(id, usuario, comentario);
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,423 @@
+*{
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+html, body{
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+}
+
+body{
+	background: #fff;
+	color: #000;
+	font-family: 'Open Sans', 'Helvetica', sans-serif;
+	font-size: 16px;
+	height: 100%;
+	position: relative;
+
+
+}
+
+nav{
+	width: 100%;
+	padding: 10px 15px;
+	background: rgba(0,0,0,0);
+}
+
+nav .logo{
+	width: 200px;
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+	font-size: 25px;
+	color: #000;
+}
+
+nav .logo i{
+	font-size: 35px;
+}
+
+nav .logo:hover{
+	cursor: pointer;
+}
+
+.contenedor-general{
+	width: 100%;
+	height: 100%;
+	/*display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;*/
+}
+
+.banner-lateral{
+	width: 20%;
+	height: 100%;
+	min-height: 550px;
+	background: #040B15;
+	color: #fff;
+	position: fixed;
+	overflow: hidden;
+}
+
+.contenedor{
+	width: 100%;
+	padding: 15px 0px;
+}
+
+.contenedor-perfil{
+	width: 100%;
+	text-align: center;
+}
+
+.banner-lateral .thumb{
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	margin-bottom: 10px;
+}
+
+.banner-lateral .thumb img{
+	width: 110px;
+	height: 110px;
+	border-radius: 50%;
+	border: 5px solid #2F3541;
+	vertical-align: top;
+}
+
+.banner-lateral .thumb img:hover{
+	cursor: pointer;
+}
+
+.contenedor-perfil .usuario{
+	font-size: 'Open Sans', 'Helvetica', sans-serif;
+	font-weight: 600;
+	font-size: 18px;
+}
+
+.redes{
+	width: 100%;
+	margin: 10px 0;
+}
+
+.redes i{
+	font-size: 18px;
+}
+
+.redes .cont-icon{
+	width: 35px;
+	height: 35px;
+	text-align: center;
+	display: inline-block;
+	padding: 8px;
+	background: #3C4650;
+	border-radius: 50%;
+	margin: 0px 4px;
+	transition: all .3s ease;
+}
+
+.celeste:hover{
+	background: #1C9CEA;
+	cursor: pointer;
+}
+
+.azul:hover{
+	background: #1773EA;
+	cursor: pointer;
+}
+
+.negro:hover{
+	background: #fff;
+	color: #000;
+	cursor: pointer;
+}
+
+.ajustes{
+	width: 100%;
+	font-family: 'Roboto', 'Helvetica', sans-serif;
+	font-weight: 300;
+	font-size: 15px;
+	padding: 25px 15px 0px 15px;
+	line-height: 45px;
+
+}
+
+.ajustes .opcion{
+	width: 100%;
+}
+
+.opcion:hover{
+	color: #1297DA;
+	cursor: pointer;
+}
+
+.ajustes i{
+	margin-right: 5px;
+}
+
+.main{
+	width: 80%;
+	position: absolute;
+	right: 0;
+	top: 0;
+}
+
+.main .contenedor-main{
+	width: 90%;
+	margin: auto;
+	padding: 5px 0px;
+}
+
+.contenedor-main .titulo{
+	width: 100%;
+	padding: 5px 0px;
+	margin-bottom: 5px;
+	font-family: 'Open Sans', 'Helvetica', sans-serif;
+	font-weight: 700;
+	font-size: 25px;
+	color: #26508F;
+}
+
+.contenedor-main .barra{
+	width: 45px;
+	height: 4px;
+	background: #1ABCD9;
+	margin-bottom: 40px;
+}
+
+.contenedor-opc{
+	width: 95%;
+	padding: 10px 10px 0px 10px;
+	margin-bottom: 20px;
+	display: flex;
+	justify-content: space-between;
+	flex-wrap: wrap;
+}
+
+.barrita{
+	width: 100%;
+	height: 1px;
+	background: #ccc;
+}
+
+.contenedor-opc .cont-opc{
+
+}
+
+#fichero{
+	display: none;
+}
+
+.contenedor-opc .cont-opc label{
+	display: inline-block;
+}
+
+.contenedor-opc .cont-opc button,
+.contenedor-opc .cont-opc label{
+	padding: 10px 20px;
+	outline: none;
+	border:none;
+	border: 1px solid #1ABCD9;
+	background: #1ABCD9;
+	color: #fff;
+	font-size: 15px;
+	font-family: 'Open Sans', 'Helvetica', sans-serif;
+	font-weight: 600;
+	border-radius: 5px;
+	transition: all .3s ease;
+}
+
+.contenedor-opc .cont-opc button:hover,
+.contenedor-opc .cont-opc label:hover{
+	cursor: pointer;
+	box-shadow: 0px 2px 2px rgba(0,0,0,.3);
+}
+
+.contenedor-opc .cont-opc button:active,
+.contenedor-opc .cont-opc label:active{
+	box-shadow: none;
+}
+
+.contenido{
+	width: 100%;
+	font-size: 14px;
+	padding: 0px 10px;
+}
+
+.barra-sup{
+	width: 100%;
+	/*height: 75px;*/
+	/*background: #040B15;*/
+}
+
+.contenido .caja{
+	width: 95%;
+	padding: 15px 0;
+	/*margin-bottom: 10px;*/
+	border-top: 1px solid #E8E6E6;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.contenido .portada{
+	width: 80px;
+}
+
+.contenido .portada img{
+	width: 100%;
+	border-radius: 3px;
+	vertical-align: top;
+}
+
+.btn{
+	display: inline-block;
+	border-radius: 5px;
+	padding: 10px 15px;
+	color: #fff;
+	margin-left: 5px;
+	transition: all .3s ease;
+}
+
+.btn:hover{
+	cursor: pointer;
+}
+
+.modificar{
+	background: #24A843;
+}
+
+.modificar:hover{
+	background: #21943C;
+}
+
+.eliminar{
+	background: #D9364C;
+}
+
+.eliminar:hover{
+	background: #C82E43;
+}
+
+.comentarios{
+	background: #343841;
+}
+
+.comentarios:hover{
+	background: #2C2F36;
+}
+
+.grande{
+	font-family: 'Roboto', 'Helvetica', sans-serif;
+	font-size: 18px;
+	font-weight: 500;
+	margin-top: 10px;
+}
+
+.contenido .portada.imggrande{
+	width: 150px;
+}
+
+.comments{
+	width: 100%;
+}
+
+.comments table{
+	width: 100%;
+}
+
+.comments table tr{
+	width: 100%;
+	display: flex;
+	justify-content: space-between;
+	flex-wrap: wrap;
+}
+
+.comments table tr td,
+.comments table tr th{
+	width: 50%;
+	text-align: left;
+	padding: 10px 5px;
+}
+
+.comments table tr th{
+	border-top: 2px solid #ccc;
+	border-bottom: 2px solid #ccc;
+}
+
+.comments table tr td{
+	border-bottom: 1px solid #ccc;
+	font-size: 15px;
+	font-family: 'Roboto', 'Helvetica', sans-serif;
+}
+
+.cont-iframes{
+	width: 100%;
+	display: flex;
+	justify-content: space-between;
+	flex-wrap: wrap;
+}
+
+.cont-iframes .cont{
+	width: 300px;
+	padding: 10px 5px;
+	background: #f2f2f2;
+	border-radius: 4px;
+	margin-bottom: 20px;
+	display: flex;
+	justify-content: center;
+	flex-wrap: wrap;
+	box-shadow: 0px 0px 4px rgba(0,0,0,.2);
+	/*border-top: 5px solid #1792E8;*/
+	/*border-bottom: 5px solid #040B15;*/
+}
+
+.opc_song{
+	width: 100%;
+}
+
+.parrafo{
+	text-align: center;
+	margin: 5px 0;
+}
+
+.parrafo p{
+	display: inline-block;
+	font-family: 'Roboto', 'Helvetica', sans-serif;
+	padding: 5px;
+	transition: all .3s ease;
+}
+
+.parrafo p:hover{
+	cursor: pointer;
+	/*background: #F43D2A;*/
+	background: #1DB954;
+	color: #fff;
+	border-radius: 3px;
+}
+
+.parrafo p:active{
+	background: #ccc;
+}
+
+iframe{
+	width: 280px;
+	height: 80px;
+	border: none;
+	border-radius: 5px;
+	margin-bottom: 5px;
+}
+
+.agrega.rojo:hover{
+	background: #EA2020;
+}
+
+/*@media screen and (max-width: 840px){
+	
+}
+*/
+
+
